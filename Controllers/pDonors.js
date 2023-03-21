@@ -2,9 +2,7 @@ import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 import { join } from "node:path";
 import Donor from "../Models/donor.js";
-
 import Enumerable from "linq";
-//import fs from "fs";
 import lodash from "lodash";
 
 const file = join("donations.json");
@@ -18,12 +16,28 @@ db.data ||= { donors: [] };
 await db.read();
 db.chain = lodash.chain(db.data);
 
+function InitialForm() {
+  const donor = new Donor();
+  db.data ||= { donors: [] };
+  db.data.donors.push(donor);
+  db.write();
+}
+
 export function CreateDonor(name, lastName, donations) {
   const donor = new Donor();
 
-  //get max id
+  if (db.data === null) {
+    InitialForm();
+    DeleteDonor(null);
+  }
 
-  donor.id = Enumerable.from(db.data.donors).max((donor) => donor._id) + 1;
+  if (db.data.donors.length === 0) {
+    donor.id = 1;
+  } else {
+    db.data ||= { donors: [] };
+    donor.id = Enumerable.from(db.data.donors).max((donor) => donor._id) + 1;
+  }
+
   donor.name = name;
   donor.lastName = lastName;
   donor.donations = donations;
@@ -97,4 +111,3 @@ export default function DonorsByDonation() {
   }
 }
 
-DonorsByDonation();
