@@ -36,3 +36,5 @@ class Donation {
     this.proyect = value;
   }
 }
+
+exports.Donation = Donation;

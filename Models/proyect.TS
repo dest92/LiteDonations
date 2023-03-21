@@ -22,3 +22,5 @@ class Proyect {
     this.totalDonated = totalDonated;
   }
 }
+
+exports.Proyect = Proyect;
