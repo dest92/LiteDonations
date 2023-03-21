@@ -1,0 +1,22 @@
+{
+  "donors": [
+    {
+      "_id": 2,
+      "_name": "Matías Nicolás",
+      "_lastName": "Acebal",
+      "_donations": [1212, 1212323, 1212323]
+    },
+    {
+      "_id": 3,
+      "_name": "Pedro",
+      "_lastName": "Gonzalez",
+      "_donations": [7, 8, 9]
+    },
+    {
+      "_id": 4,
+      "_name": "Samira",
+      "_lastName": "Bernhardt",
+      "_donations": [100, 200, 300,400]
+    }
+  ]
+}
